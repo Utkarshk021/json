@@ -127,15 +127,6 @@ def main():
     openai.api_key = st.secrets["OPENAI_API_KEY"]
     assistant_id = st.secrets["ASSISTANT_KEY"]
 
-    hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
-
     st.title("JSON AI- Job Search on the Go!")
     st.write("I am JSON, here to help you craft compelling messages for your job applications, from resumes to cover letters and LinkedIn connections.")
 
@@ -227,6 +218,16 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
     else:
         st.write("Provide your resume and job details, and JSON AI will analyze the information to offer tailored advice and templates that highlight your strengths and align with the job requirements.")
 
+    hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+    
+    
     st.sidebar.caption(f"Remaining credits for this session: {MAX_QUESTIONS_PER_SESSION - state.question_count}")
      # Divider and additional content at the bottom of the sidebar
     st.sidebar.markdown("---")
