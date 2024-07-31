@@ -127,7 +127,14 @@ def main():
     openai.api_key = st.secrets["OPENAI_API_KEY"]
     assistant_id = st.secrets["ASSISTANT_KEY"]
 
-     # Custom CSS to reduce padding and margins
+    hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
     st.title("JSON AI- Job Search on the Go!")
     st.write("I am JSON, here to help you craft compelling messages for your job applications, from resumes to cover letters and LinkedIn connections.")
