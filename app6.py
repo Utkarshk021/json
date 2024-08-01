@@ -13,7 +13,7 @@ MAX_RETRIES = 3
 RETRY_DELAY = 2
 MAX_RESUME_SIZE = 5 * 1024 * 1024
 MAX_JOB_DESCRIPTION_LENGTH = 50000
-MAX_QUESTIONS_PER_SESSION = 5  # New constant for question limit
+MAX_QUESTIONS_PER_SESSION = 50  # New constant for question limit
 
 # WebScrapingAPI credentials
 API_KEY = st.secrets["WEBSCRAPING_API_KEY"]
