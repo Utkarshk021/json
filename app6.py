@@ -143,7 +143,7 @@ def main():
         st.error(f"You have reached the maximum number of questions ({MAX_QUESTIONS_PER_SESSION}) for this session. This assistant is currently in beta, there is a limit of questions per session. Please start a new session.")
         if st.button("Start New Session"):
             reset_chat(state)
-            st.experimental_rerun()
+            st.rerun()
         return
 
     st.sidebar.title("Get Personalized Job Application Assistance")
@@ -191,7 +191,7 @@ def main():
             is_valid, message = validate_job_description(state.job_description_text)
             if is_valid:
                 state.processing = True
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.sidebar.error(message)
         else:
@@ -203,7 +203,7 @@ def main():
                         st.success("Job description successfully fetched from URL.")
                         st.toast("🎉 Job description fetched and ready to go! Let's ace this application! 💪")
                         state.processing = True
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.error("Failed to retrieve content. Please check the URL and try again.")
                         st.toast("🚫 Sorry, I couldn't access the content from the URL.")
@@ -216,11 +216,11 @@ def main():
         with st.spinner("Initializing chat..."):
             start_chat(state, assistant_id)
             state.processing = False
-            st.experimental_rerun()
+            st.rerun()
 
     if st.button("Exit Chat"):
         reset_chat(state)
-        st.experimental_rerun()
+        st.rerun()
 
     if state.start_chat:
         chat_interface(state, assistant_id)
@@ -304,11 +304,11 @@ def chat_interface(state, assistant_id):
 
             create_message(state.thread_id, "user", user_input)
             run_assistant(state, assistant_id)
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error(f"You have reached the maximum number of questions ({MAX_QUESTIONS_PER_SESSION}) for this session. Please start a new session.")
             reset_chat(state)
-            st.experimental_rerun()
+            st.rerun()
 
     if state.start_chat and not state.assistant_is_typing:
         if 'previous_question' not in st.session_state:
@@ -330,11 +330,11 @@ def chat_interface(state, assistant_id):
                 run_assistant(state, assistant_id)
                 
                 st.session_state.previous_question = selected_question
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error(f"You have reached the maximum number of questions ({MAX_QUESTIONS_PER_SESSION}) for this session. Please start a new session.")
                 reset_chat(state)
-                st.experimental_rerun()
+                st.rerun()
 
 def run_assistant(state, assistant_id):
     run = create_run(state.thread_id, assistant_id)
